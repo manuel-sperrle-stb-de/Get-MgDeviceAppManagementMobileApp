@@ -40,7 +40,7 @@ $SelectObjectParams = @{
 
         @{
             n = 'AdditionalProperties.@odata.type'
-            e = { $_.AdditionalProperties.'@odata'.type }
+            e = { $_.AdditionalProperties.'@odata.type' }
         }
 
         @{
@@ -57,5 +57,7 @@ $SelectObjectParams = @{
 }
 
 $MgDeviceAppManagementMobileAppFilteredFlat = $MgDeviceAppManagementMobileAppFiltered | Select-Object @SelectObjectParams
-$MgDeviceAppManagementMobileAppFilteredFlat | Export-Csv '.\MgDeviceAppManagementMobileApp.filtered.csv' -UseCulture -Encoding utf8 -Force
-$MgDeviceAppManagementMobileAppFilteredFlat | Where-Object { $_.'Assignments.Intent' -eq 'required' } | Export-Csv '.\MgDeviceAppManagementMobileApp.filtered.required.csv' -UseCulture -Encoding utf8 -Force
+$MgDeviceAppManagementMobileAppFilteredFlat | Export-Csv '.\MgDeviceAppManagementMobileApp.filtered.csv' -UseCulture -Encoding utf8 -NoTypeInformation -Force
+$MgDeviceAppManagementMobileAppFilteredFlat | Where-Object { $_.'Assignments.Intent' -eq 'required' } | Export-Csv '.\MgDeviceAppManagementMobileApp.filtered.required.csv' -UseCulture -Encoding utf8 -NoTypeInformation -Force
+$MgDeviceAppManagementMobileAppFilteredFlat | Where-Object { $_.'Assignments.Intent' -eq 'required' -and $_.'AdditionalProperties.@odata.type' -eq '#microsoft.graph.winGetApp' } | Export-Csv '.\MgDeviceAppManagementMobileApp.filtered.required.winGetApp.csv' -UseCulture -Encoding utf8 -NoTypeInformation -Force
+$MgDeviceAppManagementMobileAppFilteredFlat | Where-Object { $_.'Assignments.Intent' -eq 'required' -and $_.'AdditionalProperties.@odata.type' -eq '#microsoft.graph.win32LobApp' } | Export-Csv '.\MgDeviceAppManagementMobileApp.filtered.required.win32LobApp.csv' -UseCulture -Encoding utf8 -NoTypeInformation -Force

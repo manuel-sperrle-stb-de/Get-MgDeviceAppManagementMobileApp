@@ -18,7 +18,7 @@ Select-MgProfile -Name beta
 Connect-MgGraph @ConnectMgGraphParams
 
 # All
-$MgDeviceAppManagementMobileApp = Get-MgDeviceAppManagementMobileApp -All -Property Assignments
+$MgDeviceAppManagementMobileApp = Get-MgDeviceAppManagementMobileApp -All -Property Assignments -ExpandProperty Assignments
 $MgDeviceAppManagementMobileApp | ConvertTo-Json -Depth 4 | Out-File '.\MgDeviceAppManagementMobileApp.json' -Force
 
 # Filtered
@@ -53,7 +53,7 @@ $SelectObjectParams = @{
         }
 
     )
-    
+
 }
 
 $MgDeviceAppManagementMobileAppFilteredFlat = $MgDeviceAppManagementMobileAppFiltered | Select-Object @SelectObjectParams

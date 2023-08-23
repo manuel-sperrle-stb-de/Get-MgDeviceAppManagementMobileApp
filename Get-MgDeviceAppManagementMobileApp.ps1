@@ -1,3 +1,4 @@
+[CmdletBinding()]
 param (
 
     $ODataType = @(
@@ -25,11 +26,11 @@ $PSDefaultParameterValues['Out-File:Force']=$true
 
 # All
 $MgDeviceAppManagementMobileApp = Get-MgDeviceAppManagementMobileApp -All -Property Assignments -ExpandProperty Assignments
-$MgDeviceAppManagementMobileApp | ConvertTo-Json -Depth 4 | Out-File '.\MgDeviceAppManagementMobileApp.json'
+$MgDeviceAppManagementMobileApp | ConvertTo-Json -Depth 8 | Out-File '.\MgDeviceAppManagementMobileApp.json'
 
 # Filtered
 $MgDeviceAppManagementMobileAppFiltered = $MgDeviceAppManagementMobileApp | Where-Object { $_.AdditionalProperties.'@odata.type' -in $ODataType }
-$MgDeviceAppManagementMobileAppFiltered | ConvertTo-Json -Depth 4 | Out-File '.\MgDeviceAppManagementMobileApp.filtered.json'
+$MgDeviceAppManagementMobileAppFiltered | ConvertTo-Json -Depth 8 | Out-File '.\MgDeviceAppManagementMobileApp.filtered.json'
 
 # Filterered Flat
 $SelectObjectParams = @{
